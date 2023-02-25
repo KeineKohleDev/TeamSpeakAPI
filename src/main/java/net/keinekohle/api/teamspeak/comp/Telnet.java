@@ -1,6 +1,5 @@
-package net.keinekohle.api.teamspeak.comp.interfaces.telnet;
+package net.keinekohle.api.teamspeak.comp;
 
-import net.keinekohle.api.teamspeak.comp.Ts3Api;
 import net.keinekohle.api.teamspeak.exeptions.TelnetQueryConnectionFailed;
 
 import java.io.IOException;
@@ -24,13 +23,15 @@ public class Telnet
         this.TS3_API = ts3Api;
         try
         {
-            this.socket = new Socket(this.TS3_API.getTs3ApiConfig().getHostAddress(), this.TS3_API.getTs3ApiConfig().getQueryPort());
+            this.socket = new Socket(this.TS3_API.getApiConfig().getHostAddress(), this.TS3_API.getApiConfig().getQueryPort());
         } catch (IOException e)
         {
             throw new TelnetQueryConnectionFailed();
         }
         this.TELNET_INCOMING = new TelnetIncoming(this);
+        this.TELNET_INCOMING.start();
         this.TELNET_OUTGOING = new TelnetOutgoing(this);
+        this.TELNET_OUTGOING.start();
         this.TELNET_KEEP_ALIVE = new TelnetKeepAlive(this);
     }
 
@@ -48,27 +49,27 @@ public class Telnet
         this.TELNET_OUTGOING.run();
     }
 
-    public Ts3Api getTS3_API ()
+    Ts3Api getAPI ()
     {
         return TS3_API;
     }
 
-    public TelnetIncoming getTELNET_INCOMING ()
+    TelnetIncoming getTELNET_INCOMING ()
     {
         return TELNET_INCOMING;
     }
 
-    public TelnetOutgoing getTELNET_OUTGOING ()
+    TelnetOutgoing getTELNET_OUTGOING ()
     {
         return TELNET_OUTGOING;
     }
 
-    public TelnetKeepAlive getTELNET_KEEP_ALIVE ()
+    TelnetKeepAlive getTELNET_KEEP_ALIVE ()
     {
         return TELNET_KEEP_ALIVE;
     }
 
-    public Socket getSocket ()
+    Socket getSocket ()
     {
         return socket;
     }

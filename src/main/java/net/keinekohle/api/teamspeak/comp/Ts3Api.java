@@ -1,10 +1,5 @@
 package net.keinekohle.api.teamspeak.comp;
 
-import net.keinekohle.api.teamspeak.comp.interfaces.restapi.RestApi;
-import net.keinekohle.api.teamspeak.comp.interfaces.telnet.Telnet;
-
-import java.io.IOException;
-
 public class Ts3Api
 {
     private final Ts3ApiConfig TS3_API_CONFIG;
@@ -14,22 +9,19 @@ public class Ts3Api
     public Ts3Api (Ts3ApiConfig ts3ApiConfig)
     {
         this.TS3_API_CONFIG = ts3ApiConfig;
-        if (ts3ApiConfig.isEnableTelnet()) this.telnet = new Telnet(this);
-        if (ts3ApiConfig.isEnableRestApi()) this.restApi = new RestApi(this);
-    }
-
-    public Ts3ApiConfig getTs3ApiConfig ()
-    {
-        return TS3_API_CONFIG;
-    }
-
-    public Telnet getTelnet ()
-    {
-        return telnet;
+        this.telnet = new Telnet(this);
+        this.restApi = new RestApi(this);
     }
 
     public RestApi getRestApi ()
     {
-        return restApi;
+        return this.restApi;
+    }
+
+
+
+    Ts3ApiConfig getApiConfig ()
+    {
+        return TS3_API_CONFIG;
     }
 }

@@ -1,5 +1,6 @@
 package net.keinekohle.api.teamspeak.model;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.Arrays;
@@ -19,6 +20,7 @@ public class Command
     {
         this.name = name;
         this.args = args;
+        this.initJson();
     }
 
     @Override
@@ -27,6 +29,13 @@ public class Command
         StringBuilder stringBuilder = new StringBuilder(name);
         Arrays.stream(args).forEach(arg -> stringBuilder.append(" ").append(arg));
         return stringBuilder.toString();
+    }
+
+    private void initJson ()
+    {
+        this.response = new JsonObject();
+        this.response.add("body", new JsonArray());
+        this.response.add("status", new JsonObject());
     }
 
     public void setSentTime ()
@@ -47,5 +56,10 @@ public class Command
     public UUID getCOMMAND_UUID ()
     {
         return COMMAND_UUID;
+    }
+
+    public JsonObject getResponse ()
+    {
+        return response;
     }
 }

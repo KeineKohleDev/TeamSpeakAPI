@@ -11,17 +11,13 @@ public class Ts3ApiConfig
     private int queryPort;
     private int httpPort;
     private int serverPort;
-    private boolean enableTelnet;
-    private boolean enableRestApi;
     private boolean enableLogging;
 
-    private Ts3ApiConfig ()
+    public Ts3ApiConfig ()
     {
         this.queryPort = Defaults.DEFAULT_QUERY_PORT;
         this.httpPort = Defaults.DEFAULT_HTTP_PORT;
         this.serverPort = Defaults.DEFAULT_SERVER_PORT;
-        this.enableTelnet = Defaults.DEFAULT_ENABLE_TELNET;
-        this.enableRestApi = Defaults.DEFAULT_ENABLE_REST_API;
         this.enableLogging = Defaults.DEFAULT_ENABLE_LOGGING;
     }
 
@@ -80,22 +76,6 @@ public class Ts3ApiConfig
     }
 
     /**
-     * @param enableTelnet Enables or disables the telnet query
-     */
-    public void setEnableTelnet (boolean enableTelnet)
-    {
-        this.enableTelnet = enableTelnet;
-    }
-
-    /**
-     * @param enableRestApi Enables or disables the REST-Api
-     */
-    public void setEnableRestApi (boolean enableRestApi)
-    {
-        this.enableRestApi = enableRestApi;
-    }
-
-    /**
      * @param enableLogging Enables or disables logging
      */
     public void setEnableLogging (boolean enableLogging)
@@ -113,52 +93,42 @@ public class Ts3ApiConfig
         this.serverPort = serverPort;
     }
 
-    public String getHostAddress ()
+    String getHostAddress ()
     {
         return hostAddress;
     }
 
-    public String getQueryLoginName ()
+    String getQueryLoginName ()
     {
         return queryLoginName;
     }
 
-    public String getQueryPassword ()
+    String getQueryPassword ()
     {
         return queryPassword;
     }
 
-    public String getApiToken ()
+    String getApiToken ()
     {
         return apiToken;
     }
 
-    public int getQueryPort ()
+    int getQueryPort ()
     {
         return queryPort;
     }
 
-    public int getHttpPort ()
+    int getHttpPort ()
     {
         return httpPort;
     }
 
-    public int getServerPort ()
+    int getServerPort ()
     {
         return serverPort;
     }
 
-    public boolean isEnableTelnet ()
-    {
-        return enableTelnet;
-    }
-
-    public boolean isEnableRestApi ()
-    {
-        return enableRestApi;
-    }
-
-    public boolean isEnableLogging ()
+    boolean isEnableLogging ()
     {
         return enableLogging;
     }

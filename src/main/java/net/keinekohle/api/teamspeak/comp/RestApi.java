@@ -1,4 +1,4 @@
-package net.keinekohle.api.teamspeak.comp.interfaces.restapi;
+package net.keinekohle.api.teamspeak.comp;
 
 import net.keinekohle.api.teamspeak.comp.Ts3Api;
 

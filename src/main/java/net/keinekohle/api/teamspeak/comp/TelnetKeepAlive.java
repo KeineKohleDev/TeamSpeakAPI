@@ -1,4 +1,4 @@
-package net.keinekohle.api.teamspeak.comp.interfaces.telnet;
+package net.keinekohle.api.teamspeak.comp;
 
 /**
  * Thread to keep the connection to the teamspeak query alive
