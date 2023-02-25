@@ -38,7 +38,7 @@ public class Command
         setReceivedTime();
         System.out.println("Command created: " + new Timestamp(this.createdTime));
         System.out.println("Command sent: " + new Timestamp(this.sentTime));
-        System.out.println("Command received: " + new Timestamp(this.receivedTime));
+        System.out.println("Response received: " + new Timestamp(this.receivedTime));
     }
 
     private void initJson ()

@@ -36,7 +36,7 @@ class TelnetOutgoing extends Thread
             {
                 this.writer.println(this.COMMAND_QUEUE.peek().toString());
                 this.COMMAND_QUEUE.peek().setSentTime();
-                System.out.println("Sent: " + this.COMMAND_QUEUE.peek().toString());
+                if (this.TELNET.getAPI().getApiConfig().isEnableLogging()) System.out.println("Sent: " + this.COMMAND_QUEUE.peek().toString());
                 this.TELNET.getTELNET_INCOMING().getRECEIVE_QUEUE().add(this.getCOMMAND_QUEUE().poll());
                 this.TELNET.updateLastMessageSent();
             }
@@ -65,8 +65,6 @@ class TelnetOutgoing extends Thread
         this.COMMAND_QUEUE.add(new Command("servernotifyregister", new String[]{"event=textprivate"}));
         this.COMMAND_QUEUE.add(new Command("servernotifyregister", new String[]{"event=textserver"}));
         this.COMMAND_QUEUE.add(new Command("servernotifyregister", new String[]{"event=server"}));
-        this.COMMAND_QUEUE.add(new Command("clientlist", new String[]{}));
-        this.COMMAND_QUEUE.add(new Command("channellist", new String[]{}));
     }
 
     Queue<Command> getCOMMAND_QUEUE ()
