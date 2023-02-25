@@ -5,7 +5,7 @@ import net.keinekohle.api.teamspeak.comp.Ts3Api;
 /**
  * Interface to the REST-Api of teamspeak
  */
-public class RestApi
+class RestApi
 {
     private final Ts3Api TS3_API;
 

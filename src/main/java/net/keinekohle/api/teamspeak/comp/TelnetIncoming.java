@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class TelnetIncoming extends Thread
+class TelnetIncoming extends Thread
 {
     private final Telnet TELNET;
     private final BufferedReader reader;
@@ -44,13 +44,13 @@ public class TelnetIncoming extends Thread
                 }
                 if (!this.RECEIVE_QUEUE.isEmpty())
                 {
-                    if (this.TELNET.getAPI().getApiConfig().isEnableLogging()) System.out.println("Receiving: '" + line + "' for command: '" + this.RECEIVE_QUEUE.peek().toString() + "'");
+                    if (this.TELNET.getAPI().getApiConfig().isEnableLogging()) System.out.println("\nReceiving: '" + line + "' for command: '" + this.RECEIVE_QUEUE.peek().toString() + "'");
                     ResponseParser.pars(this.RECEIVE_QUEUE.peek().getResponse(), line);
                     if (this.RECEIVE_QUEUE.peek().getResponse().get("status").getAsJsonObject().get("code") != null)
                     {
-                        System.out.println("Removed: "+this.getRECEIVE_QUEUE().poll().toString());
+                        this.RECEIVE_QUEUE.peek().timing();
+                        System.out.println("Removed command from queue: "+this.getRECEIVE_QUEUE().poll().toString());
                     }
-
                 }
             } catch (IOException e)
             {

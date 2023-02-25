@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class TelnetOutgoing extends Thread
+class TelnetOutgoing extends Thread
 {
     private final Telnet TELNET;
     private PrintWriter writer;
@@ -36,8 +36,17 @@ public class TelnetOutgoing extends Thread
             {
                 this.writer.println(this.COMMAND_QUEUE.peek().toString());
                 this.COMMAND_QUEUE.peek().setSentTime();
-                System.out.println("Sent: "+this.COMMAND_QUEUE.peek().toString());
+                System.out.println("Sent: " + this.COMMAND_QUEUE.peek().toString());
                 this.TELNET.getTELNET_INCOMING().getRECEIVE_QUEUE().add(this.getCOMMAND_QUEUE().poll());
+                this.TELNET.updateLastMessageSent();
+            }
+            // Add sleep to save resources
+            try
+            {
+                Thread.sleep(1);
+            } catch (InterruptedException e)
+            {
+                throw new RuntimeException(e);
             }
         }
     }

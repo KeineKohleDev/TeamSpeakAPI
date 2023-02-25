@@ -9,7 +9,7 @@ import java.net.Socket;
  * This class is only used for receiving events from the Teamspeak server
  * because REST-Api can't send events
  */
-public class Telnet
+class Telnet
 {
     private final Ts3Api TS3_API;
     private final TelnetIncoming TELNET_INCOMING;
@@ -72,5 +72,10 @@ public class Telnet
     Socket getSocket ()
     {
         return socket;
+    }
+
+    void updateLastMessageSent ()
+    {
+        this.lastMessageSent = System.currentTimeMillis();
     }
 }

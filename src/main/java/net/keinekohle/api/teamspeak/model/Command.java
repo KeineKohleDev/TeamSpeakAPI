@@ -3,8 +3,10 @@ package net.keinekohle.api.teamspeak.model;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class Command
 {
@@ -12,7 +14,7 @@ public class Command
     private String name;
     private String[] args;
     private JsonObject response;
-    private long createdTime = System.nanoTime();
+    private long createdTime = System.currentTimeMillis();
     private long sentTime;
     private long receivedTime;
 
@@ -31,6 +33,14 @@ public class Command
         return stringBuilder.toString();
     }
 
+    public void timing ()
+    {
+        setReceivedTime();
+        System.out.println("Command created: " + new Timestamp(this.createdTime));
+        System.out.println("Command sent: " + new Timestamp(this.sentTime));
+        System.out.println("Command received: " + new Timestamp(this.receivedTime));
+    }
+
     private void initJson ()
     {
         this.response = new JsonObject();
@@ -40,12 +50,12 @@ public class Command
 
     public void setSentTime ()
     {
-        this.sentTime = System.nanoTime();
+        this.sentTime = System.currentTimeMillis();
     }
 
     public void setReceivedTime ()
     {
-        this.receivedTime = System.nanoTime();
+        this.receivedTime = System.currentTimeMillis();
     }
 
     public void setResponse (JsonObject response)
