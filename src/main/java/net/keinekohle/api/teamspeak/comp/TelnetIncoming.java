@@ -1,5 +1,8 @@
 package net.keinekohle.api.teamspeak.comp;
 
+import net.keinekohle.api.teamspeak.events.ClientConnectedEvent;
+import net.keinekohle.api.teamspeak.model.Channel;
+import net.keinekohle.api.teamspeak.model.Client;
 import net.keinekohle.api.teamspeak.model.Command;
 import net.keinekohle.api.teamspeak.util.ResponseParser;
 

@@ -1,3 +1,4 @@
 # Project exclude paths
 /target/
 /src/main/java/net/keinekohle/api/teamspeak/Main.java
+/src/main/java/net/keinekohle/api/teamspeak/ListenerTest.java
